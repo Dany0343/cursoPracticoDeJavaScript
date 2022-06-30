@@ -38,36 +38,110 @@ console.group("Triangulo");
 
 // const alturaTriangulo = 5.5;
 // console.log("La altura del triangulo es: " + alturaTriangulo + "cm");
-
-const perimetroTriangulo = ladoTriangulo + ladoTriangulo2 + baseTriangulo;
-console.log("El perimetro del triangulo es: " + perimetroTriangulo+ "cm");
-
-const areaTriangulo = (baseTriangulo * alturaTriangulo) / 2;
-console.log("El área del triangulo es: " + areaTriangulo + "cm^2");
+function perimetroTriangulo(lado1, lado2, base) {
+    return lado1 + lado2 + base;
+}
+// console.log("El perimetro del triangulo es: " + perimetroTriangulo+ "cm");
+function areaTriangulo(base, altura) {
+    return (base * altura) / 2;
+}
+// console.log("El área del triangulo es: " + areaTriangulo + "cm^2");
 
 console.groupEnd();
 
 //Código del circulo
 console.group("Circulos");
 //Radio
-const radioCirculo = 4;
-console.log("El radio del circulos es: " + radioCirculo + "cm");
+// const radioCirculo = 4;
+// console.log("El radio del circulos es: " + radioCirculo + "cm");
 
 //Diametro
-const diametroCirculo = radioCirculo * 2;
-console.log("El diametro del circulos es: " + diametroCirculo + "cm");
+function diametroCirculo(radio){
+    return radio * 2;
+}
+// const diametroCirculo = radioCirculo * 2;
+// console.log("El diametro del circulos es: " + diametroCirculo + "cm");
 
 //PI
 const PI = Math.PI;
-console.log("PI es: " + PI);
+// console.log("PI es: " + PI);
 
 //Circunferencia
-const perimetroCirculo = diametroCirculo * PI;
-console.log("El área del circulos es: " + perimetroCirculo + "cm");
+function perimetroCirculo(radio) {
+    const diametro = diametroCirculo(radio);
+    return diametro * PI;
+}
+// const perimetroCirculo = diametroCirculo * PI;
+// console.log("El área del circulos es: " + perimetroCirculo + "cm");
 
 
 //Area
-const areaCirculo = PI * (radioCirculo * radioCirculo);
-console.log("El área del circulos es: " + areaCirculo + "cm");
+function areaCirculo(radio) {
+    return PI * (radio ** 2);
+}
+// const areaCirculo = PI * (radioCirculo * radioCirculo);
+// console.log("El área del circulos es: " + areaCirculo + "cm");
 
 console.groupEnd();
+
+
+//Aquí interactuamos con el HTML 
+//Cuadrado
+function calcularPerimetroCuadrado() {
+    const input = document.getElementById('InputCuadrado');
+    const value = input.value;
+    
+    const perimetro = perimetroCuadrado(value)
+    alert(perimetro);
+}
+function calcularAreaCuadrado() {
+    const input = document.getElementById('InputCuadrado');
+    const value = input.value;
+    
+    const area = areaCuadrado(value)
+    alert(area);
+}
+
+//Triangulo 
+function calcularPerimetroTriangulo() {
+    const input = document.getElementById('InputTriangulo1');
+    const input2 = document.getElementById('InputTriangulo2');
+    const input3 = document.getElementById('InputTriangulo3');
+    const value = parseFloat(input.value);
+    const value2 = parseFloat(input2.value);
+    const value3 = parseFloat(input3.value);
+
+    
+    const perimetro = perimetroTriangulo(value, value2, value3)
+    alert(perimetro);
+}
+function calcularAreaTriangulo() {
+    const input = document.getElementById('InputTriangulo1');
+    const input2 = document.getElementById('InputTriangulo2');
+    const input3 = document.getElementById('InputTriangulo3');
+
+    const value = parseFloat(input.value);
+    const value2 = parseFloat(input2.value);
+    const value3 = parseFloat(input3.value);
+
+    const altura = Math.sqrt((value2 ** 2) - ((value3 / 2) ** 2)); //Por pitagoras con la formula a = raiz(c^2 - b^2)
+    const area = areaTriangulo(value3, altura)
+    alert(area);
+}
+
+//Circulo
+
+function calcularPerimetroCirculo() {
+    const input = document.getElementById('InputCirculo');
+    const value = parseFloat(input.value);
+    
+    const perimetro = perimetroCirculo(value)
+    alert(perimetro);
+}
+function calcularAreaCirculo() {
+    const input = document.getElementById('InputCirculo');
+    const value = parseFloat(input.value);
+    
+    const perimetro = areaCirculo(value)
+    alert(perimetro);
+}
